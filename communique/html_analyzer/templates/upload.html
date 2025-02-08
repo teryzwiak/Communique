@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload HTML File</title>
+</head>
+<body>
+    <h2>Prześlij plik HTML</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Prześlij</button>
+    </form>
+
+    {% if result %}
+        <h3>Znalezione zmienne Jinja:</h3>
+        <ul>
+            {% for var in result.variables %}
+                <li>{{ var }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Znalezione instrukcje Jinja:</h3>
+        <ul>
+            {% for stmt in result.statements %}
+                <li>{{ stmt }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
